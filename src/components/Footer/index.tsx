@@ -7,6 +7,7 @@ const Footer: React.FC = () => {
     <DefaultFooter
       style={{
         background: 'none',
+        gridArea:'footer'
       }}
       links={[
         {
