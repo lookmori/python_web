@@ -20,6 +20,11 @@ export default [
         path: '/user/login',
         component: './User/Login',
       },
+      {
+        name: 'register',
+        path: '/user/register',
+        component: './User/Register',
+      },
     ],
   },
   {
@@ -45,19 +50,19 @@ export default [
       },
     ],
   },
-    {
+  {
     name: '问题详情',
     icon: 'table',
     path: '/problem/item',
     component: './Questions/ask_question',
-    hideInMenu:true
+    hideInMenu: true,
   },
-      {
+  {
     name: '发布问题',
     icon: 'table',
     path: '/problem/pub_ques',
     component: './PubQuestion',
-    hideInMenu:true
+    hideInMenu: true,
   },
   {
     name: 'list.table-list',

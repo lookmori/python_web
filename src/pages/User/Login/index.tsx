@@ -1,14 +1,13 @@
 import { Footer } from '@/components';
-import { login } from '@/services/ant-design-pro/api';
+import { loginUser } from '@/services/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { FormattedMessage, history, useIntl, useModel } from '@umijs/max';
-import { Alert, Button, message, Image } from 'antd';
+import {  Button, Image, message } from 'antd';
 import { createStyles } from 'antd-style';
-import React, { useState } from 'react';
-import { flushSync } from 'react-dom';
-import homeSvg from '/public/svg/undraw_tree-swing_5010.svg'
+import React from 'react';
 import logoSvg from '/public/svg/undraw_designer_0ogx.svg';
+import homeSvg from '/public/svg/undraw_tree-swing_5010.svg';
 const useStyles = createStyles(({ token }) => {
   return {
     action: {
@@ -40,7 +39,7 @@ const useStyles = createStyles(({ token }) => {
                           "left right"
                           "left right"
                           "footer footer" `,
-      gridTemplateRows: '1fr 1fr 1fr  1fr auto', /* 3.各区域 宽高设置 */
+      gridTemplateRows: '1fr 1fr 1fr  1fr auto' /* 3.各区域 宽高设置 */,
       height: '100vh',
       overflow: 'auto',
       alignContent: 'center',
@@ -53,72 +52,58 @@ const useStyles = createStyles(({ token }) => {
 const ActionIcons = () => {
   return (
     <>
-      <Button type="link">注册账号</Button>
+      <Button type="link" onClick={() => history.push('/user/register')}>
+        注册账号
+      </Button>
     </>
   );
 };
 
-const LoginMessage: React.FC<{
-  content: string;
-}> = ({ content }) => {
-  return (
-    <Alert
-      style={{
-        marginBottom: 24,
-      }}
-      message={content}
-      type="error"
-      showIcon
-    />
-  );
-};
+
 
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const { initialState, setInitialState } = useModel('@@initialState');
   const { styles } = useStyles();
   const intl = useIntl();
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    if (userInfo) {
-      flushSync(() => {
-        setInitialState((s) => ({
-          ...s,
-          currentUser: userInfo,
-        }));
-      });
-    }
-  };
-
-  const handleSubmit = async (values: API.LoginParams) => {
+  const handleSubmit = async (values: any) => {
     try {
+      const body = {
+        user_name: values.username,
+        user_pwd: values.password,
+      };
+      console.log(body);
+
       // 登录
-      const msg = await login({ ...values });
-      if (msg.status === 'ok') {
+      const msg = await loginUser({ ...body });
+      console.log(msg, 'msg');
+
+      if (msg.code === 200) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
         });
         message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
+        setInitialState((s) => ({
+          ...s,
+          currentUser: msg.data,
+        }));
+        
         const urlParams = new URL(window.location.href).searchParams;
         history.push(urlParams.get('redirect') || '/');
         return;
+      } else {
+        message.error(msg.message);
       }
-      console.log(msg);
       // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
       });
-      console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };
-  const { status} = userLoginState;
 
   return (
     <div className={styles.container}>
@@ -137,23 +122,15 @@ const Login: React.FC = () => {
           }}
           logo={<img alt="logo" src={logoSvg} />}
           title="来，刷一题吧！"
-          subTitle='成为最厉害的刷题大师！'
+          subTitle="成为最厉害的刷题大师！"
           initialValues={{
             autoLogin: true,
           }}
           actions={[<ActionIcons key="icons" />]}
           onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
+            await handleSubmit(values);
           }}
         >
-          {status === 'error' && (
-            <LoginMessage
-              content={intl.formatMessage({
-                id: 'pages.login.accountLogin.errorMessage',
-                defaultMessage: '账户或密码错误',
-              })}
-            />
-          )}
           <>
             <ProFormText
               name="username"
