@@ -1,17 +1,22 @@
 import { PageContainer, ProForm, ProFormCaptcha, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
-import { Card, message } from 'antd';
+import { Card, message,Image } from 'antd';
 
 import styles from './index.less';
 import { MailTwoTone } from '@ant-design/icons';
+import registerSvg from '/public/svg/undraw_sign-up_z2ku.svg';
 const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 export default function RegisterUser() {
   return (
     <PageContainer>
       <div className={styles.container}>
         <div className={styles.white}></div>
+        <div className={styles.svg}>
+          <Image src={registerSvg} preview={false} />
+        </div>
         <div className={styles.content}>
           <Card>
             <ProForm
+              className={styles.email}
               onFinish={async (values) => {
                 console.log(values);
                 message.success('提交成功');
@@ -87,12 +92,10 @@ export default function RegisterUser() {
                   },
                   () => ({
                     validator(_, value) {
-                      if (emailPattern.test(value) ) {
+                      if (emailPattern.test(value)) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(
-                        new Error('邮箱格式错误请检查！'),
-                      );
+                      return Promise.reject(new Error('邮箱格式错误请检查！'));
                     },
                   }),
                 ]}
