@@ -34,6 +34,12 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/weekquestion',
+    name: 'weekquestion',
+    icon: 'smile',
+    component: './WeekQuestion',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',

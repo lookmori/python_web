@@ -90,9 +90,11 @@ export default function PubQues() {
             }}
           >
             <MDEditor value={codeValue} preview="edit" onChange={(value) => setCodeValue(value)} />
-            <MDEditor.Markdown source={codeValue} style={{ whiteSpace: 'pre-wrap' }} />
+            {/* <MDEditor.Markdown source={codeValue} style={{ whiteSpace: 'pre-wrap' }} /> */}
           </div>
         </ProForm>
+
+
       </Card>
     </PageContainer>
   );

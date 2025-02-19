@@ -75,9 +75,13 @@ const Login: React.FC = () => {
       console.log(body);
 
       // 登录
-      const msg = await loginUser({ ...body });
-      console.log(msg, 'msg');
-
+      // const msg = await loginUser({ ...body });
+      // console.log(msg, 'msg');
+      const msg = {
+        code: 200,
+        data: {},
+        message:''
+      }
       if (msg.code === 200) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
