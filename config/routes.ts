@@ -34,10 +34,31 @@ export default [
     component: './Welcome',
   },
   {
-    path: '/weekquestion',
-    name: 'weekquestion',
+    path: '/teacher',
+    name: '教师模块',
     icon: 'smile',
-    component: './WeekQuestion',
+    routes: [
+      {
+        path: '/teacher/exaimpaper/worklist',
+        name: '题目管理',
+        component: './Exaimpaper/Exaimworklist',
+      },
+      {
+        path: '/teacher/exaimpaper/workpaper',
+        name: '试卷管理',
+        component: './Exaimpaper/Exaimworkpaper',
+      },
+      {
+        path: '/teacher/student',
+        name: '学生列表',
+        component: './Teacher/Student',
+      },
+      {
+        path: '/teacher/self',
+        name: '个人信息',
+        component: './Teacher/Teacherself',
+      },
+    ],
   },
   {
     path: '/admin',

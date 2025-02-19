@@ -18,7 +18,7 @@ const Demo = () => {
           return true;
         }}
       >
-        <ProFormText style={{ padding: 0 }} width="xl" name="name" label="作业标题" />
+        <ProFormText style={{ padding: 0 }} width="xl" name="name" label="试卷标题" />
         <ProFormList
           name="attributes"
           label=""

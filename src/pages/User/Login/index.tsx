@@ -62,7 +62,7 @@ const ActionIcons = () => {
 
 
 const Login: React.FC = () => {
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { setInitialState } = useModel('@@initialState');
   const { styles } = useStyles();
   const intl = useIntl();
 
