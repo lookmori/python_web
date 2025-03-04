@@ -24,6 +24,7 @@ const InfoCard: React.FC<{
     
   }
   return (
+    <Link to={href} >
     <div
       onClick={() => findQuestion()}
       style={{
@@ -80,38 +81,8 @@ const InfoCard: React.FC<{
       >
         {desc}
       </div>
-      <Link to={href}  >
-        了解更多 {'>'}
-      </Link>
     </div>
-  );
-};
-const InfoTabs: React.FC = () => {
-  const [activeButton, setActiveButton] = useState('简单');
-  function selectButton(text:string) {
-    setActiveButton(text);
-  }
-  return (
-    <Flex justify="space-between" align="center">
-      <Button
-        type={activeButton === '简单' ? 'primary' : 'dashed'}
-        onClick={() => selectButton('简单')}
-      >
-        简单
-      </Button>
-      <Button
-        type={activeButton === '中等' ? 'primary' : 'dashed'}
-        onClick={() => selectButton('中等')}
-      >
-        中等
-      </Button>
-      <Button
-        type={activeButton === '困难' ? 'primary' : 'dashed'}
-        onClick={() => selectButton('困难')}
-      >
-        困难
-      </Button>
-    </Flex>
+    </Link>
   );
 };
 const Welcome: React.FC = () => {
@@ -131,7 +102,6 @@ const Welcome: React.FC = () => {
             borderRadius: 8,
           }}
         >
-          <InfoTabs />
 
           <Divider />
           <div

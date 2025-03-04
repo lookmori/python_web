@@ -1,4 +1,6 @@
-﻿/**
+﻿import access from "@/access";
+
+/**
  * @name umi 的路由配置
  * @description 只支持 path,component,routes,redirect,wrappers,name,icon 的配置
  * @param path  path 只支持两种占位符配置，第一种是动态参数 :id 的形式，第二种是 * 通配符，通配符只能出现路由字符串的最后。
@@ -48,34 +50,13 @@ export default [
         name: '试卷管理',
         component: './Exaimpaper/Exaimworkpaper',
       },
-      {
-        path: '/teacher/student',
-        name: '学生列表',
-        component: './Teacher/Student',
-      },
-      {
-        path: '/teacher/self',
-        name: '个人信息',
-        component: './Teacher/Teacherself',
-      },
     ],
   },
   {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
-    routes: [
-      {
-        path: '/admin',
-        redirect: '/admin/sub-page',
-      },
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
-      },
-    ],
+      path: '/student',
+      name: '学生列表',
+      icon: 'crown',
+      component: './Teacher/Student',
   },
   {
     name: '问题详情',
@@ -92,10 +73,10 @@ export default [
     hideInMenu: true,
   },
   {
-    name: 'list.table-list',
+    name: '个人信息',
     icon: 'table',
-    path: '/list',
-    component: './TableList',
+    path: '/infolist',
+    component: './Selfinfo',
   },
   {
     path: '/',
