@@ -50,6 +50,18 @@ export default [
         name: '试卷管理',
         component: './Exaimpaper/Exaimworkpaper',
       },
+      {
+        path: '/teacher/exaimpaper/classList',
+        name: '班级管理',
+        component: './Exaimpaper/ClassList',
+      },
+      {
+        name: '班级详情',
+        icon: 'table',
+        path: '/teacher/classstudent/detail',
+        component: './Exaimpaper/ClassListDetail',
+        hideInMenu: true,
+      },
     ],
   },
   {
@@ -65,13 +77,7 @@ export default [
     component: './Questions/ask_question',
     hideInMenu: true,
   },
-  {
-    name: '发布问题',
-    icon: 'table',
-    path: '/problem/pub_ques',
-    component: './PubQuestion',
-    hideInMenu: true,
-  },
+
   {
     name: '个人信息',
     icon: 'table',

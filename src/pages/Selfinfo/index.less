@@ -1,0 +1,23 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(12,1fr);
+  grid-template-areas: "main main main main",
+  "content content content content"
+  "footer footer footer footer";
+}
+.header {
+  grid-area: main;
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+}
+.zhe {
+  grid-area: content;
+  grid-column: 1 / 5;
+  grid-row: 3 / 9;
+}
+.zhengque {
+  grid-area: conent;
+  grid-column: 1 / 5;
+  grid-row: 10 / 12;
+}

@@ -1,8 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { Button, Card, Divider, Flex, Pagination, Space, theme } from 'antd';
+import { Badge, Button, Card, Divider, Flex, Pagination, Space, theme } from 'antd';
 import React, { useState } from 'react';
 import { history } from '@umijs/max';
+
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
  * @param param0
@@ -90,12 +91,15 @@ const Welcome: React.FC = () => {
     <PageContainer
       header={{
         extra: (
-          <Button type="primary" onClick={() => history.push('/problem/pub_ques')}>
-            发布问题
+                      <Button variant="outlined"onClick={() => history.push('')}>
+                      <Badge status="success" text="已完成" />
+            本周作业
           </Button>
+
         ),
       }}
     >
+
       <Space direction="vertical" size="large" style={{ display: 'flex' }}>
         <Card
           style={{

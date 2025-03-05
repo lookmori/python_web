@@ -1,11 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Badge, Button, Card, Descriptions, DescriptionsProps, Divider, Modal } from 'antd';
+import { Badge, Button, Card,  Divider, Modal } from 'antd';
 import Editor from '@monaco-editor/react';
 import { useRef, useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
+import { CozeAPI } from '@coze/api';
 
 
-export default function Ask_question({name,des,ex_in,ex_out,status,code}) {
+export default function Ask_question({status,code}) {
   const [codeValue,setCodeValue] = useState(`## 问题描述
 
 计算两数之和
@@ -28,6 +29,7 @@ print(a+b)
   const editorRef = useRef(null)
   const [value,setValue] = useState('# python')
   const [visible, setVisible] = useState(false);
+  const [pageLoading,setPageLoading] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleMount(editor:any,_monaco: any) {
     editorRef.current = editor
@@ -39,11 +41,29 @@ print(a+b)
     
   }
 
-  function pushCode() {
 
+  // 提交代码
+  async function pushCode() {
+    setPageLoading(true)
+       const apiClient = new CozeAPI({
+          token: 'pat_4i3iAhP9W6dyCueGZ00ZRNTcvzV2M1PUOzVUz1BBJXlcaWMKsBz2T4JH3GP6qFtF',
+          baseURL: 'https://api.coze.cn/',
+          allowPersonalAccessTokenInBrowser: true
+        });
+        const res = await apiClient.workflows.runs.stream({
+          workflow_id: '7477892587513479168',
+          bot_id: '7475993452724617257',
+          parameters: {
+          "input": codeValue
+        },
+        })
+        for await (const event of res) {
+          if (event.data) {
+          }
+        }
   }
   return (
-    <PageContainer>
+    <PageContainer loading={pageLoading}>
       <Modal
         title="答案"
         open={visible}
