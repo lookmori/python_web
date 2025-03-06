@@ -52,6 +52,7 @@ export default {
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
   'menu.教师模块': '教师模块',
+  'menu.教师列表': '教师列表',
   'menu.教师模块.题目管理': '题目管理',
   'menu.教师模块.试卷管理': '试卷管理',
   'menu.教师模块.班级管理': '班级管理',

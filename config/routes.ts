@@ -36,29 +36,29 @@ export default [
     component: './Welcome',
   },
   {
-    path: '/teacher',
+    path: '/exaimpaper',
     name: '教师模块',
     icon: 'smile',
     routes: [
       {
-        path: '/teacher/exaimpaper/worklist',
+        path: '/exaimpaper/worklist',
         name: '题目管理',
         component: './Exaimpaper/Exaimworklist',
       },
       {
-        path: '/teacher/exaimpaper/workpaper',
+        path: '/exaimpaper/workpaper',
         name: '试卷管理',
         component: './Exaimpaper/Exaimworkpaper',
       },
       {
-        path: '/teacher/exaimpaper/classList',
+        path: '/exaimpaper/classList',
         name: '班级管理',
         component: './Exaimpaper/ClassList',
       },
       {
         name: '班级详情',
         icon: 'table',
-        path: '/teacher/classstudent/detail',
+        path: '/exaimpaper/classstudent/detail',
         component: './Exaimpaper/ClassListDetail',
         hideInMenu: true,
       },
@@ -70,6 +70,12 @@ export default [
       icon: 'crown',
       component: './Teacher/Student',
   },
+  {
+    path: '/teacher',
+    name: '教师列表',
+    icon: 'crown',
+    component: './Teacher/TeacherList',
+},
   {
     name: '问题详情',
     icon: 'table',

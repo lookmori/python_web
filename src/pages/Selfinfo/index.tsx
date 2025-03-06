@@ -5,7 +5,7 @@ import { Chart, Guide, Line, Point, Tooltip } from 'bizcharts';
 import { useState } from 'react';
 
 const { Text } = Guide;
-
+import styles from './index.less'
 export default function SelfInfo() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [teaClassList, _] = useState([
@@ -68,7 +68,7 @@ export default function SelfInfo() {
   };
   return (
     <PageContainer>
-      <div className="header">
+      <div className={styles.header}>
         <Row gutter={16}>
           <Col span={9}>
             <Statistic title="做题数" value={1128} prefix={<LikeOutlined />} valueStyle={{ color: '#1677ff' }}/>
@@ -83,7 +83,7 @@ export default function SelfInfo() {
         </Row>
       </div>
       <div style={{margin:'40px 0'}}></div>
-      <div className="zhe">
+      <div className={styles.zhe}>
         <Chart
           appendPadding={[10, 0, 0, 10]}
           autoFit
